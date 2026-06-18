@@ -1,0 +1,64 @@
+# Bot filtering for arielcnd.com portfolio
+# Blocks known malicious/unwanted bots while allowing legitimate SEO crawlers
+# Works with Apache 2.2+ and LiteSpeed
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # ============================================================
+  # SECTION 1: ALLOW legitimate SEO crawlers to bypass filtering
+  # ============================================================
+  # These crawlers are essential for discovery and recruiters sharing on social media
+
+  RewriteCond %{HTTP_USER_AGENT} Googlebot [NC,OR]
+  RewriteCond %{HTTP_USER_AGENT} Bingbot [NC,OR]
+  RewriteCond %{HTTP_USER_AGENT} DuckDuckBot [NC,OR]
+  RewriteCond %{HTTP_USER_AGENT} LinkedInBot [NC]
+
+  # Skip the next 100 rules if User-Agent matches an approved crawler
+  RewriteRule ^ - [S=100]
+
+  # ============================================================
+  # SECTION 2: BLOCK unwanted bots and scrapers (403 Forbidden)
+  # ============================================================
+
+  # Web scraping tools
+  RewriteCond %{HTTP_USER_AGENT} ^Scrapy [NC,OR]
+  RewriteCond %{HTTP_USER_AGENT} ^python-requests [NC,OR]
+  RewriteCond %{HTTP_USER_AGENT} ^curl [NC,OR]
+  RewriteCond %{HTTP_USER_AGENT} ^wget [NC,OR]
+  RewriteCond %{HTTP_USER_AGENT} ^libwww-perl [NC,OR]
+  RewriteCond %{HTTP_USER_AGENT} ^Go-http-client [NC,OR]
+
+  # Aggressive/low-quality bots (SEO spam, content theft)
+  RewriteCond %{HTTP_USER_AGENT} MJ12bot [NC,OR]
+  RewriteCond %{HTTP_USER_AGENT} AhrefsBot [NC,OR]
+  RewriteCond %{HTTP_USER_AGENT} SemrushBot [NC,OR]
+  RewriteCond %{HTTP_USER_AGENT} DotBot [NC,OR]
+  RewriteCond %{HTTP_USER_AGENT} PetalBot [NC,OR]
+
+  # Aggressive AI crawlers (content harvesting)
+  RewriteCond %{HTTP_USER_AGENT} GPTBot [NC,OR]
+  RewriteCond %{HTTP_USER_AGENT} CCBot [NC,OR]
+  RewriteCond %{HTTP_USER_AGENT} ClaudeBot [NC]
+
+  # Return 403 Forbidden to blocked bots
+  RewriteRule ^ - [F]
+
+</IfModule>
+
+# ============================================================
+# Configuration notes for maintenance:
+# ============================================================
+#
+# To add a new bot to blocklist:
+#   - Add a new RewriteCond line before the RewriteRule ^ - [F]
+#   - Use [NC,OR] (case-insensitive, OR) except on the LAST condition (use [NC])
+#   - Example: RewriteCond %{HTTP_USER_AGENT} NewBot [NC,OR]
+#
+# To allow a new legitimate crawler:
+#   - Add to SECTION 1 (ALLOW legitimate SEO crawlers)
+#   - Use [NC,OR] except on the LAST condition (use [NC])
+#
+# Testing (see instructions below)
+#
