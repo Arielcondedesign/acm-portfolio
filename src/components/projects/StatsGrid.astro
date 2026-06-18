@@ -1,0 +1,25 @@
+---
+import StatsCard from './StatsCard.astro';
+
+interface Stat {
+  label: string;
+  value: string;
+  icon?: string;
+}
+
+interface Props {
+  stats: Stat[];
+}
+
+const { stats } = Astro.props;
+---
+
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 py-12 border-y border-slate-700">
+  {stats.map((stat) => (
+    <StatsCard
+      label={stat.label}
+      value={stat.value}
+      icon={stat.icon}
+    />
+  ))}
+</div>

@@ -1,0 +1,71 @@
+---
+import '@fontsource/dm-sans/latin-ext-300.css';
+import '@fontsource/dm-sans/latin-ext-600.css';
+import { ViewTransitions } from 'astro:transitions';
+import Footer from '../components/layout/Footer.astro';
+import Header from '../components/layout/Header.astro';
+
+const { frontmatter } = Astro.props;
+---
+<html lang="en" x-cloak x-data="themeStore()" :class="{ 'dark': isDark }">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <title>{frontmatter.title}</title>
+  <ViewTransitions />
+  <script is:inline>
+    (function () {
+      var theme = localStorage.getItem('theme');
+      if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      }
+    })();
+  </script>
+</head>
+<body class="bg-primary-50 text-primary-950 dark:bg-primary-950 dark:text-primary-200 antialiased transition">
+  <script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+  <noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt="" referrerpolicy="no-referrer-when-downgrade" /></noscript>
+  <Header />
+  <main>
+    <slot />
+  </main>
+  <Footer />
+  <style is:global>
+    [x-cloak] {
+      display: none !important;
+    }
+  </style>
+  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="60961a70-3efc-4524-89e6-e206d9663c79" type="text/javascript"></script>
+  <script>
+    import Alpine from 'alpinejs';
+    import collapse from '@alpinejs/collapse';
+    import Hotjar from '@hotjar/browser';
+
+    const siteId = 5122615;
+    const hotjarVersion = 6;
+
+    Hotjar.init(siteId, hotjarVersion);
+
+    Alpine.plugin(collapse);
+
+    function themeStore() {
+      return {
+        isDark: false,
+        init() {
+          this.isDark = document.documentElement.classList.contains('dark');
+        },
+        toggle() {
+          this.isDark = !this.isDark;
+          localStorage.setItem('theme', this.isDark ? 'dark' : 'light');
+        },
+      };
+    }
+
+    window.themeStore = themeStore;
+    window.Alpine = Alpine;
+    Alpine.start();
+  </script>
+</body>
+</html>

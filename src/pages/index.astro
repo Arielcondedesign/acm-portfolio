@@ -1,24 +1,44 @@
 ---
 import About from '../components/home/About.astro';
-import Expertise from '../components/home/Expertise.astro';
 import Hero from '../components/home/Hero.astro';
 import Services from '../components/home/Services.astro';
 import Layout from '../layouts/Layout.astro';
-/* 
-import Logos from '../components/home/Logos.astro';
-import Testimonials from '../components/home/Testimonials.astro';
-
- <Logos />
-  <Testimonials />
-*/
 ---
 
 <Layout
-  description="Explore my digital portfolio showcasing my expertise in product-centric UX design. I leverage user research and data-driven insights to create intuitive and engaging interfaces that enhance user experiences and drive product success."
-  title="Ariel Conde | Planet Centric Digital Design"
+  description="Ariel Conde is a product designer with 15 years of experience helping climate-conscious and wellbeing-focused companies build digital experiences that are accessible, sustainable and purposeful."
+  title="Ariel Conde | Product Designer"
 >
   <Hero />
   <Services />
-  <Expertise />
   <About />
+  <section class="py-16 sm:py-20">
+    <div class="mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+      <div class="bg-primary-500/10 dark:bg-primary-400/10 rounded-3xl px-8 py-12 sm:px-12 sm:py-16">
+        <h2 class="text-3xl font-medium tracking-tight sm:text-4xl mb-4">Let's talk</h2>
+        <p class="text-primary-950/70 dark:text-primary-200/70 text-lg sm:text-xl mb-8 max-w-2xl">
+          If you're hiring a product designer for a purpose-driven consumer company, I'd love to hear from you.
+        </p>
+        <div class="flex flex-col gap-3">
+          <a
+            href="mailto:hola@arielcnd.com"
+            class="text-lg font-medium hover:underline focus-visible:outline focus-visible:outline-2 rounded-sm"
+          >
+            hola@arielcnd.com
+          </a>
+          <a
+            href="https://www.linkedin.com/in/arielconde/"
+            target="_blank"
+            rel="noopener"
+            class="text-lg font-medium hover:underline focus-visible:outline focus-visible:outline-2 rounded-sm"
+          >
+            LinkedIn →
+          </a>
+        </div>
+        <p class="text-primary-950/50 dark:text-primary-200/50 text-sm mt-8">
+          Looking to work together as a client? Find me at <a href="https://regeneralia.cat" target="_blank" rel="noopener" class="hover:underline">Regeneralia</a>.
+        </p>
+      </div>
+    </div>
+  </section>
 </Layout>

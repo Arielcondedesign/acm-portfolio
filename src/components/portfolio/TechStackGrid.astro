@@ -1,0 +1,27 @@
+---
+interface Tool {
+  name: string;
+  category?: string;
+}
+
+interface Props {
+  tools: Tool[];
+}
+
+const { tools } = Astro.props;
+---
+
+<div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 py-12">
+  {tools.map((tool) => (
+    <div class="bg-primary-500/10 dark:bg-primary-400/10 border border-primary-950/20 dark:border-primary-200/20 rounded-2xl p-4 text-center hover:border-primary-950/40 dark:hover:border-primary-200/40 transition-colors duration-300">
+      <div class="font-medium text-sm sm:text-base mb-1">
+        {tool.name}
+      </div>
+      {tool.category && (
+        <div class="text-primary-950/50 dark:text-primary-200/50 text-xs uppercase tracking-wide">
+          {tool.category}
+        </div>
+      )}
+    </div>
+  ))}
+</div>

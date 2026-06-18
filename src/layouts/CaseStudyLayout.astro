@@ -1,0 +1,119 @@
+---
+import { Image } from 'astro:assets';
+import Layout from './Layout.astro';
+
+const { frontmatter } = Astro.props;
+---
+
+<Layout
+  title={frontmatter.title}
+  description={frontmatter.description}
+>
+  <div class="mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+
+    <!-- Breadcrumb -->
+    <nav aria-label="Breadcrumb" class="py-6">
+      <ol class="flex items-center gap-2 text-sm text-primary-950/50 dark:text-primary-200/50">
+        <li><a href="/" class="hover:text-primary-950 dark:hover:text-primary-200 transition-colors">Inicio</a></li>
+        <li>/</li>
+        <li><a href="/portfolio" class="hover:text-primary-950 dark:hover:text-primary-200 transition-colors">Portfolio</a></li>
+        <li>/</li>
+        <li class="text-primary-950 dark:text-primary-200 font-medium truncate max-w-xs" aria-current="page">{frontmatter.client}</li>
+      </ol>
+    </nav>
+
+    <!-- Cover image -->
+    {frontmatter.coverImage && (
+      <div class="mb-16 overflow-hidden rounded-3xl aspect-[16/7] bg-primary-500/10 dark:bg-primary-400/10">
+        <Image
+          src={frontmatter.coverImage}
+          alt={`Imagen del proyecto ${frontmatter.client}`}
+          width={1600}
+          height={700}
+          class="w-full h-full object-cover"
+        />
+      </div>
+    )}
+
+    <!-- Header -->
+    <header class="mb-16 max-w-4xl">
+      {frontmatter.tags?.length > 0 && (
+        <div class="flex flex-wrap gap-2 mb-6">
+          {frontmatter.tags.map((tag: string) => (
+            <span class="text-xs rounded-2xl border border-primary-950/20 dark:border-primary-200/20 px-3 py-1 text-primary-950/60 dark:text-primary-200/60">
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
+
+      <h1 class="text-4xl font-medium tracking-tight sm:text-5xl lg:text-6xl mb-4">
+        {frontmatter.client}
+      </h1>
+      <p class="text-primary-950/70 dark:text-primary-200/70 text-lg sm:text-xl max-w-3xl">
+        {frontmatter.description}
+      </p>
+    </header>
+
+    <!-- Meta grid -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-px bg-primary-950/10 dark:bg-primary-200/10 rounded-3xl overflow-hidden mb-16">
+      <div class="bg-primary-50 dark:bg-primary-950 px-6 py-6">
+        <p class="text-xs text-primary-950/40 dark:text-primary-200/40 uppercase tracking-wider mb-2">Cliente</p>
+        <p class="font-medium">{frontmatter.client}</p>
+      </div>
+      <div class="bg-primary-50 dark:bg-primary-950 px-6 py-6">
+        <p class="text-xs text-primary-950/40 dark:text-primary-200/40 uppercase tracking-wider mb-2">Rol</p>
+        <p class="font-medium">{frontmatter.role}</p>
+      </div>
+      {frontmatter.duration && (
+        <div class="bg-primary-50 dark:bg-primary-950 px-6 py-6">
+          <p class="text-xs text-primary-950/40 dark:text-primary-200/40 uppercase tracking-wider mb-2">Duración</p>
+          <p class="font-medium">{frontmatter.duration}</p>
+        </div>
+      )}
+      {frontmatter.platforms && (
+        <div class="bg-primary-50 dark:bg-primary-950 px-6 py-6">
+          <p class="text-xs text-primary-950/40 dark:text-primary-200/40 uppercase tracking-wider mb-2">Plataforma</p>
+          <p class="font-medium">{frontmatter.platforms}</p>
+        </div>
+      )}
+    </div>
+
+    <!-- Content -->
+    <div class="max-w-4xl mx-auto pb-24">
+      <div class="prose prose-slate dark:prose-invert max-w-none
+        prose-headings:font-medium prose-headings:tracking-tight
+        prose-h2:text-3xl prose-h2:mt-16 prose-h2:mb-6
+        prose-h3:text-xl prose-h3:mt-10 prose-h3:mb-4
+        prose-h4:text-base prose-h4:mt-8
+        prose-p:text-primary-950/70 dark:prose-p:text-primary-200/70 prose-p:text-base prose-p:leading-relaxed
+        prose-a:text-primary-950 dark:prose-a:text-primary-200 prose-a:underline
+        prose-strong:text-primary-950 dark:prose-strong:text-primary-200 prose-strong:font-medium
+        prose-li:text-primary-950/70 dark:prose-li:text-primary-200/70
+        prose-hr:border-primary-950/10 dark:prose-hr:border-primary-200/10
+        prose-blockquote:border-l-4 prose-blockquote:border-primary-950/20 dark:prose-blockquote:border-primary-200/20 prose-blockquote:pl-6 prose-blockquote:not-italic
+        prose-code:text-primary-950 dark:prose-code:text-primary-200 prose-code:bg-primary-500/10 dark:prose-code:bg-primary-400/10 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:font-normal">
+        <slot />
+      </div>
+
+      <!-- Tools footer -->
+      {frontmatter.tools && (
+        <div class="mt-16 pt-8 border-t border-primary-950/10 dark:border-primary-200/10">
+          <p class="text-xs text-primary-950/40 dark:text-primary-200/40 uppercase tracking-wider mb-3">Herramientas</p>
+          <p class="text-primary-950/70 dark:text-primary-200/70">{frontmatter.tools}</p>
+        </div>
+      )}
+
+      <!-- Back link -->
+      <div class="mt-16">
+        <a
+          href="/portfolio"
+          class="inline-flex items-center gap-2 text-primary-950/50 dark:text-primary-200/50 hover:text-primary-950 dark:hover:text-primary-200 transition-colors text-sm font-medium"
+        >
+          ← Volver al portfolio
+        </a>
+      </div>
+    </div>
+
+  </div>
+</Layout>

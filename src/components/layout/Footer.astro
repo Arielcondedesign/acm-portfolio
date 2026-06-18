@@ -4,7 +4,7 @@ const bottomLinks = [
     header: 'Social',
     links: [
       {
-        name: 'Linkedin',
+        name: 'LinkedIn',
         href: 'https://www.linkedin.com/in/arielconde/',
         isExternal: true,
       },
@@ -14,14 +14,14 @@ const bottomLinks = [
         isExternal: true,
       },
       {
-        name: 'Spotify',
-        href: 'https://open.spotifycdn.com/cdn/build/web-player/web-player.35a9d42e.js',
+        name: 'Regeneralia',
+        href: 'https://regeneralia.cat',
         isExternal: true,
       },
     ],
   },
   {
-    header: 'Company',
+    header: 'Work',
     links: [
       {
         name: 'Home',
@@ -29,16 +29,15 @@ const bottomLinks = [
         isExternal: false,
       },
       {
+        name: 'Portfolio',
+        href: '/portfolio',
+        isExternal: false,
+      },
+      {
         name: 'About',
         href: '/about',
         isExternal: false,
       },
-      /* {
-        name: 'Pricing',
-        href: '/pricing',
-        isExternal: false,
-      },
-      */
       {
         name: 'Contact',
         href: '/contact',
@@ -81,13 +80,13 @@ const bottomLinks = [
           class="h-4 w-auto"
           width="65"
           height="40"
-          :src="$store.theme.isDark ? '/assets/logo-inverted.svg' : '/assets/logo.svg'"
-          alt="Ariel Conde Logo Footer - Digital Conscious Design"
+          :src="isDark ? '/assets/logo-inverted.svg' : '/assets/logo.svg'"
+          alt="Ariel Conde Logo Footer"
         />
         <p class="text-primary-950/70 dark:text-primary-200/70 text-base">
-          Make your digital product be simple but significant
+          Product designer for consumer products with purpose
         </p>
-        <p class="text-primary-950/70 dark:text-primary-200/70 text-sm">© 2024 Ariel Conde</p>
+        <p class="text-primary-950/70 dark:text-primary-200/70 text-sm">© 2025 Ariel Conde</p>
       </div>
 
       <!-- Bottom links -->
@@ -127,17 +126,13 @@ const bottomLinks = [
       </div>
     </div>
   </div>
-  <div class="flex justify-left mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8 gap-4">
-       <!-- Temporaly disabled 
-        <a href="https://www.thegreenwebfoundation.org/" target="_blank" rel="noopener noreferrer">
-        <img src="https://app.greenweb.org/api/v3/greencheckimage/arielcnd.com?nocache=true" alt="This website runs on green hosting - verified by thegreenwebfoundation.org" width="200px" height="95px">
-    </a> -->
+  <div class="flex justify-left mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8 gap-4 mt-12">
     <a href="https://regeneralia.com/?utm_source=acndportfolio&utm_medium=footer&utm_campaign=ref" target="_blank" rel="noopener noreferrer">
-        <img
-            class="h-auto w-auto"
-            :src="$store.theme.isDark ? '/assets/arielcnd-web-carbon-score-dark.svg' : '/assets/arielcnd-web-carbon-score-light.svg'"
-            alt="Regeneralia Badge - verified web carbon score A+"
-        />
+      <img
+        class="h-auto w-auto"
+        :src="isDark ? '/assets/web-carbon-score-dark.svg' : '/assets/web-carbon-score-light.svg'"
+        alt="Regeneralia Badge - verified web carbon score A+"
+      />
     </a>
-</div>
+  </div>
 </footer>

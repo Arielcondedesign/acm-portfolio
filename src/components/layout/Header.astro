@@ -10,13 +10,13 @@ const links = [
     name: 'About',
     href: '/about',
   },
-  /* {
-    ref: '03',
-    name: 'Pricing',
-    href: '/pricing',
-  },*/
   {
     ref: '03',
+    name: 'Portfolio',
+    href: '/portfolio',
+  },
+  {
+    ref: '04',
     name: 'Contact',
     href: '/contact',
   },
@@ -42,7 +42,7 @@ const links = [
           class="h-6 w-auto"
           width="264"
           height="32"
-          :src="$store.theme.isDark ? '/assets/logo-inverted.svg' : '/assets/logo.svg'"
+          :src="isDark ? '/assets/logo-inverted.svg' : '/assets/logo.svg'"
           alt="Ariel Conde Logo Header - Digital Conscious Design"
         />
       </a>
@@ -54,14 +54,13 @@ const links = [
       <button
         type="button"
         class="text-primary-950 dark:text-primary-200 hover:bg-primary-500/10 dark:hover:bg-primary-400/10 ring-primary-950 inline-flex h-14 w-14 items-center justify-center rounded-full transition focus:outline-none focus-visible:ring-2"
-        x-data
-        @click="$store.theme.toggle()"
+        @click="toggle()"
       >
         <span class="sr-only">Toggle theme mode</span>
         <svg
           x-cloak
           class="h-6 w-6"
-          :class="{ 'hidden': !($store.theme.isDark) }"
+          :class="{ 'hidden': !(isDark) }"
           xmlns="http://www.w3.org/2000/svg"
           fill="currentColor"
           viewBox="0 0 24 24"
@@ -74,7 +73,7 @@ const links = [
         <svg
           x-cloak
           class="h-6 w-6"
-          :class="{ 'hidden': $store.theme.isDark }"
+          :class="{ 'hidden': isDark }"
           xmlns="http://www.w3.org/2000/svg"
           fill="currentColor"
           viewBox="0 0 24 24"
@@ -141,7 +140,7 @@ const links = [
         <p
           class="text-primary-950/70 dark:text-primary-200/70 max-w-sm text-xl italic leading-loose">
             <span class="font-medium">
-              Make your digital product <br> be simple <br> but significant.
+              Product designer <br> for consumer products <br> with purpose.
             </span>
         </p>
       </div>

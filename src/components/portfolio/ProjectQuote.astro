@@ -1,0 +1,19 @@
+---
+interface Props {
+  quote: string;
+  author?: string;
+}
+
+const { quote, author } = Astro.props;
+---
+
+<div class="bg-primary-500/10 dark:bg-primary-400/10 border-l-4 border-primary-950/40 dark:border-primary-200/40 rounded-r-2xl p-8 sm:p-12 py-12 my-12">
+  <blockquote class="text-xl sm:text-2xl font-medium mb-4 leading-relaxed">
+    "{quote}"
+  </blockquote>
+  {author && (
+    <div class="text-primary-950/60 dark:text-primary-200/60 text-sm">
+      — {author}
+    </div>
+  )}
+</div>

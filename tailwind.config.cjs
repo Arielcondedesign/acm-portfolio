@@ -13,7 +13,7 @@ module.exports = {
       primary: colors.slate,
     },
     fontFamily: {
-      sans: ['Dm sans', 'sans-serif'],
+      sans: ['Google Sans Code', 'monospace'],
     },
     fontSize: {
       xs: ['0.75rem', '1rem'],

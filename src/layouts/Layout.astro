@@ -15,7 +15,7 @@ const { description, title } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="en" x-cloak x-data :class="{ 'dark': $store.theme.isDark }" >
+<html lang="en" x-cloak x-data="themeStore()" :class="{ 'dark': isDark }">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
@@ -27,12 +27,21 @@ const { description, title } = Astro.props;
     <meta name="description" content={description} />
     <title>{title}</title>
     <ViewTransitions />
+    <script is:inline>
+      (function () {
+        var theme = localStorage.getItem('theme');
+        if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
   </head>
   <body
     class="bg-primary-50 text-primary-950 dark:bg-primary-950 dark:text-primary-200 antialiased transition"
-  > <!-- 100% privacy-first analytics -->
-  <script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
-  <noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt="" referrerpolicy="no-referrer-when-downgrade" /></noscript>
+  >
+    <!-- 100% privacy-first analytics -->
+    <script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+    <noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt="" referrerpolicy="no-referrer-when-downgrade" /></noscript>
     <Header />
     <main>
       <slot />
@@ -56,27 +65,22 @@ const { description, title } = Astro.props;
 
       Alpine.plugin(collapse);
 
-      Alpine.store('theme', {
-        init() {
-          this.isDark = (() => {
-            if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-              return localStorage.getItem('theme') === 'dark';
-            }
-            if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-              return true;
-            }
-            return false;
-          })();
-        },
+      function themeStore() {
+        return {
+          isDark: false,
 
-        isDark: false,
+          init() {
+            this.isDark = document.documentElement.classList.contains('dark');
+          },
 
-        toggle() {
-          this.isDark = !this.isDark;
-          localStorage.setItem('theme', this.isDark ? 'dark' : 'light');
-        },
-      });
+          toggle() {
+            this.isDark = !this.isDark;
+            localStorage.setItem('theme', this.isDark ? 'dark' : 'light');
+          },
+        };
+      }
 
+      window.themeStore = themeStore;
       window.Alpine = Alpine;
       Alpine.start();
     </script>

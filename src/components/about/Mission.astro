@@ -1,17 +1,8 @@
 ---
 const stats = [
-  {
-    name: 'Years',
-    value: '8',
-  },
-  {
-    name: 'Awards',
-    value: '3',
-  },
-  {
-    name: 'Digital projects',
-    value: '15',
-  },
+  { name: 'Years of experience', value: '15' },
+  { name: 'Digital projects', value: '20+' },
+  { name: 'Accessibility standard', value: 'WCAG AA' },
 ];
 ---
 
@@ -24,34 +15,32 @@ const stats = [
           width="576"
           height="864"
           src="/assets/ArielConde-Product-Designer.webp"
-          alt="I am Ariel Conde, a designer focused on sustainable solutions that integrate aesthetics and environmental responsibility. My goal is to create experiences that respect our planet and foster a more sustainable future."
+          alt="Ariel Conde, product designer based in Catalonia"
         />
-        <figcaption class="text-right text-sm text-gray-500 mt-2">
-          © June 2021 Elisabet Encina <br>
-          <a href="https://elisabetencina.com/" class="text-blue-500 hover:underline">View more 🔗</a>
+        <figcaption class="text-right text-sm text-primary-950/40 dark:text-primary-200/40 mt-2">
+          © June 2021 Elisabet Encina
         </figcaption>
       </figure>
       <div class="flex flex-col gap-10">
-        <!-- Mission description -->
         <div class="space-y-8 sm:space-y-12">
-          <h2 class="text-3xl font-medium tracking-tight sm:text-4xl">My Mission as a Planet-Centric Designer</h2>
           <div class="space-y-6">
+            <h2 class="text-3xl font-medium tracking-tight sm:text-4xl">How I got here</h2>
             <p class="text-primary-950/70 dark:text-primary-200/70 text-base sm:text-lg">
-              As a planet-centric designer, my mission is to create impactful digital solutions that prioritize sustainability and user experience. I am dedicated to developing innovative designs that not only meet the needs of users but also contribute to a healthier planet. By integrating circular economy principles into my work, I strive to minimize environmental impact while maximizing user engagement and satisfaction.
+              I started in Barcelona advertising agencies (Contrapunto BBDO, El Guateque), doing graphic design and art direction for brands like Danone, Škoda and Gas Natural. I studied photography, moved into editorial and web design, and eventually into UX/UI through a Master's at KSchool. The thread connecting all of it is the same: I've always been obsessed with how visual and digital decisions change what people do.
             </p>
+            <h2 class="text-3xl font-medium tracking-tight sm:text-4xl pt-4">What I do now</h2>
             <p class="text-primary-950/70 dark:text-primary-200/70 text-base sm:text-lg">
-              I believe that businesses have a unique opportunity to lead the way in sustainability through their digital products. By collaborating with B Corps and like-minded organizations, we can co-create solutions that resonate with conscious consumers and drive meaningful change. Together, we can transform the way we think about design, ensuring that every digital interaction contributes positively to both users and the environment. Let’s work together to make a lasting impact!
+              I design consumer-facing digital products with a focus on sustainability and meaningful use. I've worked on fashion e-commerce, sport and community platforms, IoT applications and luxury retail. I run a small studio, <a href="https://regeneralia.cat" target="_blank" rel="noopener" class="underline hover:no-underline">Regeneralia</a>, where I help purpose-driven brands improve the performance, accessibility and environmental footprint of their digital products.
             </p>
           </div>
         </div>
 
-        <!-- Stats -->
-        <dl class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+        <dl class="grid grid-cols-1 gap-6 sm:grid-cols-3">
           {
             stats.map((stat) => (
               <div class="border-primary-900/10 dark:border-primary-300/10 rounded-3xl border p-6">
-                <dt class="text-base">{stat.name}</dt>
-                <dd class="text-3xl font-medium tracking-tight">{stat.value}</dd>
+                <dt class="text-sm text-primary-950/60 dark:text-primary-200/60">{stat.name}</dt>
+                <dd class="text-2xl font-medium tracking-tight mt-1">{stat.value}</dd>
               </div>
             ))
           }

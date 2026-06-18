@@ -1,0 +1,25 @@
+---
+import FeatureHighlight from './FeatureHighlight.astro';
+
+interface Highlight {
+  title: string;
+  description: string;
+  icon?: string;
+}
+
+interface Props {
+  highlights: Highlight[];
+}
+
+const { highlights } = Astro.props;
+---
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-12">
+  {highlights.map((highlight) => (
+    <FeatureHighlight
+      title={highlight.title}
+      description={highlight.description}
+      icon={highlight.icon}
+    />
+  ))}
+</div>

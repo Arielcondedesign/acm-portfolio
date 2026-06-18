@@ -1,42 +1,84 @@
 ---
-const services = [
+const projects = [
   {
-    step: '01',
-    name: 'UX Researcher',
+    number: '01',
+    slug: 'people-of-leisure',
+    name: 'People of Leisure',
+    summary: 'Sustainable fashion e-commerce redesign',
     description:
-      'I like to observe users without conditioning them. I try to base my decisions on data to make sounder and more informed decisions.',
+      'Rebuilt a Shopify store around real behavioural data, simplified the catalogue and wove sustainability into the buying flow.',
+    tags: ['B2C', 'Fashion', 'Sustainability', 'Shopify'],
+    image: '/assets/team-1.webp',
   },
   {
-    step: '02',
-    name: 'CX Service Design',
+    number: '02',
+    slug: 'bloc-district',
+    name: 'Bloc District',
+    summary: 'A climbing gym that earned revenue before it opened',
     description:
-      ' I collaborate with teams to implement agile methodologies, focusing on user feedback to create seamless experiences that drive loyalty.',
+      'Designed and built a conversion landing with pre-sales and payments, validating demand before the physical space existed.',
+    tags: ['B2C', 'Sport', 'Conversion', 'WordPress'],
+    image: '/assets/team-2.webp',
   },
   {
-    step: '03',
-    name: 'Digital Sustainable Design',
+    number: '03',
+    slug: 'jean-pierre-bua',
+    name: 'Jean Pierre Bua',
+    summary: 'Luxury fashion e-commerce at scale',
     description:
-      'I apply circular economy principles to develop eco-friendly solutions that meet user needs while minimizing environmental impact.',
+      'Restructured the information architecture of a 1,600-product catalogue into a clean, aspirational shopping experience.',
+    tags: ['B2C', 'Luxury retail', 'IA', 'WooCommerce'],
+    image: '/assets/ArielConde-Product-Designer.webp',
   },
 ];
 ---
 
-<section id="services" class="py-16 sm:py-20" >
+<section id="work" class="py-16 sm:py-20">
   <div class="mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
     <div class="flex flex-col gap-12 sm:gap-16">
-      <h2 class="text-3xl font-medium tracking-tight sm:text-4xl">Technical Skills</h2>
+      <div class="flex items-end justify-between gap-4">
+        <h2 class="text-3xl font-medium tracking-tight sm:text-4xl">Selected work</h2>
+        <a
+          href="/portfolio"
+          class="text-primary-950/70 dark:text-primary-200/70 hover:text-primary-950 dark:hover:text-primary-200 text-base transition hover:underline"
+        >
+          View all →
+        </a>
+      </div>
       <div class="grid gap-8 lg:grid-cols-3">
         {
-          services.map((service) => (
-            <div class="bg-primary-500/10 dark:bg-primary-400/10 flex flex-col gap-12 rounded-3xl px-6 py-8">
-              <p class="text-sm">{service.step}</p>
-              <div class="flex flex-col gap-4">
-                <h3 class="text-xl font-medium">{service.name}</h3>
-                <p class="text-primary-950/70 dark:text-primary-200/70 text-base sm:text-lg">
-                  {service.description}
-                </p>
+          projects.map((project) => (
+            <a
+              href={`/portfolio/${project.slug}`}
+              class="bg-primary-500/10 dark:bg-primary-400/10 hover:bg-primary-500/20 dark:hover:bg-primary-400/20 group flex flex-col rounded-3xl overflow-hidden transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+            >
+              <img
+                src={project.image}
+                alt={project.name}
+                class="h-48 w-full object-cover"
+                width="600"
+                height="400"
+                loading="lazy"
+              />
+              <div class="flex flex-col gap-4 px-6 py-8 flex-1">
+                <p class="text-sm text-primary-950/50 dark:text-primary-200/50">{project.number}</p>
+                <div class="flex flex-col gap-2">
+                  <h3 class="text-xl font-medium">{project.name}</h3>
+                  <p class="text-primary-950/70 dark:text-primary-200/70 text-sm font-medium">{project.summary}</p>
+                </div>
+                <p class="text-primary-950/70 dark:text-primary-200/70 text-base flex-1">{project.description}</p>
+                <div class="flex flex-wrap gap-2 mt-2">
+                  {project.tags.map((tag) => (
+                    <span class="bg-primary-900/10 dark:bg-primary-200/10 rounded-full px-3 py-1 text-xs">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <span class="text-primary-600 dark:text-primary-400 text-sm font-medium group-hover:underline mt-2">
+                  View case study →
+                </span>
               </div>
-            </div>
+            </a>
           ))
         }
       </div>
