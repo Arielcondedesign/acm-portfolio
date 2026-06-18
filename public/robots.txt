@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /legal
+Disallow: /privacy
+Disallow: /cookies
+Disallow: /pricing
+Disallow: /pdf
+Disallow: /styleguide
+
+Sitemap: https://www.arielcnd.com/sitemap.xml

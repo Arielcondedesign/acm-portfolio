@@ -1,0 +1,31 @@
+# Green Web Foundation - Carbon.txt v1.0
+# Learn more about carbon.txt: https://carbonweb.org
+
+# The hosting provider this website is hosted with:
+hosting-provider: Hetzner
+
+# Whether the website is hosted on green/renewable energy:
+green-hosted-by: true
+
+# The date the website was last checked for green hosting:
+last-check-date: 2026-06-18
+
+# The website owner/operator:
+website-owner: Ariel Conde
+
+# Contact information:
+contact-page: https://arielcnd.com/contact
+
+# Sustainability/green policy (if available):
+sustainability-policy: https://arielcnd.com/privacy
+
+# Website performance & carbon metrics:
+# Designed for minimal carbon footprint with:
+# - Static site generation (Astro)
+# - Optimized images and assets
+# - Lightweight CSS/JS (Tailwind, Alpine.js)
+# - Web compression enabled
+
+# Green Web Certificate:
+# This website is listed in The Green Web Foundation database:
+# https://www.thegreenwebfoundation.org/directory/

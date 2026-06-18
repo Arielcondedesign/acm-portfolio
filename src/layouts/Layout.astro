@@ -1,7 +1,6 @@
 ---
-import '@fontsource/dm-sans/latin-ext-300.css';
-import '@fontsource/dm-sans/latin-ext-600.css';
-import Cookies from 'js-cookie';
+import '@fontsource/dm-sans/latin-300.css';
+import '@fontsource/dm-sans/latin-600.css';
 import { ViewTransitions } from 'astro:transitions';
 import Footer from '../components/layout/Footer.astro';
 import Header from '../components/layout/Header.astro';
@@ -9,9 +8,13 @@ import Header from '../components/layout/Header.astro';
 interface Props {
   description: string;
   title: string;
+  noindex?: boolean;
 }
 
-const { description, title } = Astro.props;
+const { description, title, noindex = false } = Astro.props;
+const siteUrl = 'https://www.arielcnd.com';
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
+const ogImage = `${siteUrl}/assets/ArielConde-Product-Designer.webp`;
 ---
 
 <!DOCTYPE html>
@@ -26,6 +29,20 @@ const { description, title } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <title>{title}</title>
+    {noindex && <meta name="robots" content="noindex, follow" />}
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content="Ariel Conde | Product Designer" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <link rel="preconnect" href="https://cloud.umami.is" />
+    <link rel="preconnect" href="https://consent.cookiebot.com" />
     <ViewTransitions />
     <script is:inline>
       (function () {
@@ -39,9 +56,8 @@ const { description, title } = Astro.props;
   <body
     class="bg-primary-50 text-primary-950 dark:bg-primary-950 dark:text-primary-200 antialiased transition"
   >
-    <!-- 100% privacy-first analytics -->
-    <script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
-    <noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt="" referrerpolicy="no-referrer-when-downgrade" /></noscript>
+    <!-- Analytics with Umami -->
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="b263d51c-d009-4f86-83cb-6d3394178489"></script>
     <Header />
     <main>
       <slot />
@@ -56,12 +72,6 @@ const { description, title } = Astro.props;
     <script>
       import Alpine from 'alpinejs';
       import collapse from '@alpinejs/collapse';
-      import Hotjar from '@hotjar/browser';
-
-      const siteId = 5122615;
-      const hotjarVersion = 6;
-
-      Hotjar.init(siteId, hotjarVersion);
 
       Alpine.plugin(collapse);
 

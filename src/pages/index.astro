@@ -1,8 +1,9 @@
 ---
 import About from '../components/home/About.astro';
 import Hero from '../components/home/Hero.astro';
-import Services from '../components/home/Services.astro';
+// import Services from '../components/home/Services.astro'; // temporarily hidden — re-enable when images are ready
 import Layout from '../layouts/Layout.astro';
+import EmailLink from '../components/EmailLink.astro';
 ---
 
 <Layout
@@ -10,7 +11,7 @@ import Layout from '../layouts/Layout.astro';
   title="Ariel Conde | Product Designer"
 >
   <Hero />
-  <Services />
+  {/* <Services /> temporarily hidden — re-enable when images are ready */}
   <About />
   <section class="py-16 sm:py-20">
     <div class="mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
@@ -20,12 +21,7 @@ import Layout from '../layouts/Layout.astro';
           If you're hiring a product designer for a purpose-driven consumer company, I'd love to hear from you.
         </p>
         <div class="flex flex-col gap-3">
-          <a
-            href="mailto:hola@arielcnd.com"
-            class="text-lg font-medium hover:underline focus-visible:outline focus-visible:outline-2 rounded-sm"
-          >
-            hola@arielcnd.com
-          </a>
+          <EmailLink email="hola@arielcnd.com" class="text-lg font-medium hover:underline focus-visible:outline focus-visible:outline-2 rounded-sm" />
           <a
             href="https://www.linkedin.com/in/arielconde/"
             target="_blank"

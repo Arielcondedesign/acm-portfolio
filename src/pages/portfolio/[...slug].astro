@@ -1,23 +1,8 @@
 ---
-import { getCollection } from 'astro:content';
-import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
-
+// Portfolio temporarily disabled — re-enable when images are ready
 export async function getStaticPaths() {
-  const cases = await getCollection('portfolio');
-  return cases.map((entry) => ({
-    params: { slug: entry.slug },
-    props: { entry },
-  }));
+  return [];
 }
 
-interface Props {
-  entry: any;
-}
-
-const { entry } = Astro.props;
-const { Content } = await entry.render();
+return Astro.redirect('/404', 302);
 ---
-
-<CaseStudyLayout frontmatter={entry.data}>
-  <Content />
-</CaseStudyLayout>
